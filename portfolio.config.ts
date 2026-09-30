@@ -69,6 +69,7 @@ I care about fast, accessible interfaces and code the next person can easily pic
     },
   ],
 
+  // Synced with the works list on ogulcancevik.com (src/constants/works.ts).
   projects: [
     {
       name: 'PhotoApp Web',
@@ -83,6 +84,13 @@ I care about fast, accessible interfaces and code the next person can easily pic
       tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     },
     {
+      name: 'Terminal Portfolio',
+      desc: 'A portfolio you browse like a Unix terminal. Open source: fork it, edit one config file, deploy.',
+      url: 'https://terminal.ogulcancevik.com',
+      repo: 'https://github.com/ogulcancevik/terminal-portfolio',
+      tags: ['Preact', 'TypeScript', 'Vite'],
+    },
+    {
       name: 'Local PDF',
       desc: 'Merge, split, reorder, and rotate PDFs in the browser. Nothing is uploaded, and it works offline.',
       url: 'https://pdf.ogulcancevik.com',
@@ -91,23 +99,23 @@ I care about fast, accessible interfaces and code the next person can easily pic
     },
     {
       name: 'Tic Tac Toe',
-      desc: 'Real-time multiplayer tic-tac-toe: create a private room and share the invite link.',
+      desc: 'Tic Tac Toe is a web application that allows you to play tic tac toe with your friends.',
       repo: 'https://github.com/ogulcancevik/tic-tac-toe-online',
-      tags: ['React', 'TypeScript', 'Express.js', 'Socket.IO'],
+      tags: ['React', 'TypeScript', 'Tailwind CSS', 'Express.js', 'Socket.IO'],
     },
     {
       name: 'Typing Speed Test',
-      desc: 'Minimalist typing speed test with real-time metrics.',
+      desc: 'Typing Speed Test is a web application that allows you to test your typing speed.',
       url: 'https://react-typing-speed-test.netlify.app',
       repo: 'https://github.com/ogulcancevik/typing-speed-test',
       tags: ['React', 'TypeScript', 'Tailwind CSS'],
     },
     {
       name: 'Moviet',
-      desc: 'Movie app: add movies to your collection and watch trailers.',
+      desc: 'Moviet is a movie app, you can add movie to your collection and watch movie trailers.',
       url: 'https://moviet.netlify.app',
       repo: 'https://github.com/ogulcancevik/moviet',
-      tags: ['React', 'TypeScript', 'Tailwind CSS', 'Redux'],
+      tags: ['React.js', 'TypeScript', 'Tailwind CSS', 'Redux'],
     },
   ],
 
