@@ -1,0 +1,258 @@
+/* The desktop and the terminal window: title bar, screen, prompt, command buttons, layouts. */
+
+/* The "desktop": everything visible while the machine is on. */
+.desktop {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 960px); /* minmax(0, …) stops long lines widening the page */
+  place-content: center;
+  padding: 24px;
+  background: var(--page);
+}
+.desktop:not(.on) {
+  visibility: hidden;
+}
+
+.term {
+  width: 100%;
+  max-width: 960px;
+  height: min(calc(100dvh - 48px), 760px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.35);
+  overflow: hidden;
+  text-shadow: var(--glow);
+}
+
+/* minimized: only the title bar stays */
+.term.min {
+  height: auto;
+}
+.term.min .screen,
+.term.min .chips {
+  display: none;
+}
+
+.term:fullscreen {
+  max-width: none;
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Title bar */
+.bar {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr; /* keeps the title centred */
+  align-items: center;
+  padding: 4px 8px;
+  background: var(--bar);
+}
+
+.bar h1 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: center;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controls {
+  display: flex;
+}
+
+/* macOS-style window buttons: 24px hit area, 12px dot */
+.ctl {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  border: 0;
+  border-radius: 50%;
+  background: #ff5f56 content-box;
+  font: bold 9px/12px system-ui, sans-serif;
+  color: rgb(0 0 0 / 0.6);
+  cursor: pointer;
+}
+.ctl.min {
+  background-color: #ffbd2e;
+}
+.ctl.full {
+  background-color: #27c93f;
+}
+.ctl:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* Glyphs appear on hover/focus, like macOS */
+.controls:is(:hover, :focus-within) .ctl::after {
+  content: '×';
+}
+.controls:is(:hover, :focus-within) .ctl.min::after {
+  content: '−';
+}
+.controls:is(:hover, :focus-within) .ctl.full::after {
+  content: '+';
+}
+
+/* Screen and prompt */
+.screen {
+  flex: 1;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  padding: 16px 20px;
+}
+
+.entry {
+  margin-bottom: 14px;
+}
+
+.prompt {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.input-line {
+  display: flex;
+  gap: 1ch;
+}
+
+.input-line input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-shadow: inherit;
+  caret-color: var(--accent);
+  caret-shape: block;
+}
+
+/* Suggested command buttons */
+.chips {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  overflow-x: auto;
+  background: var(--bar);
+}
+
+.chips button {
+  flex: none;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+/* hover only where there's a real pointer; on touch it would stick after a tap */
+@media (hover: hover) {
+  .chips button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+/* layout: 'full' — edge to edge, status bar instead of window buttons */
+[data-layout='full'] .desktop {
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0;
+}
+[data-layout='full'] .term {
+  max-width: none;
+  height: 100dvh;
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-layout='full'] .bar {
+  padding: 4px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  white-space: nowrap; /* title shrinks and ellipsizes instead */
+}
+.status.end {
+  justify-content: flex-end;
+}
+.icon {
+  min-width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: 16px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .icon:hover:not(:disabled) {
+    color: var(--fg);
+  }
+}
+.icon:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+@media (max-width: 640px) {
+  .desktop {
+    padding: 0;
+  }
+  .term {
+    height: 100dvh;
+    border-radius: 0;
+    /* keep clear of the notch and rounded corners (index.html uses viewport-fit=cover) */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  }
+  .screen {
+    padding: 12px 14px;
+  }
+  /* iOS zooms into inputs under 16px on focus, so the input stays 16px and is drawn at 13px (0.8125).
+     Its box is made 1/0.8125 wider so that, once scaled down, it still fills the line. */
+  .input-line {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    overflow: hidden;
+  }
+  .input-line input {
+    width: calc(100% / 0.8125);
+    font-size: 16px;
+    transform: scale(0.8125);
+    transform-origin: left center;
+  }
+  .chips {
+    gap: 6px;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); /* bottom: above the home indicator */
+    /* fade the right edge so it's clear the row scrolls */
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+  .chips button {
+    min-height: 36px;
+    padding: 0 12px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .chips button:active {
+    transform: scale(0.96);
+    transition-duration: 0.1s;
+  }
+  /* Boot done: the desktop fades in. */
+  .desktop.on {
+    animation: fade-in 0.35s ease-out;
+  }
+}

@@ -135,7 +135,7 @@ export const commands: Record<string, Command> = {
           {config.experience.map((e) => (
             <li key={e.company + e.date} class="job">
               <p>
-                <span class="muted">{e.date.padEnd(13)}</span>
+                <span class="muted job-date">{e.date.padEnd(13)}</span>
                 <span class="accent">{e.company}</span> · {e.role}
               </p>
               {e.desc && <p class="job-desc">{e.desc}</p>}
@@ -207,7 +207,9 @@ export const commands: Record<string, Command> = {
             return (
               <p key={name}>
                 <span class="muted pre-inline">
-                  {dir ? 'drwxr-xr-x' : '-rw-r--r--'} {config.user} {size} {date}{' '}
+                  {dir ? 'drwxr-xr-x' : '-rw-r--r--'}
+                  <span class="hide-narrow"> {config.user}</span> {size}
+                  <span class="hide-narrow"> {date}</span>{' '}
                 </span>
                 <FsEntry name={name} node={child} path={path} />
               </p>
@@ -285,12 +287,14 @@ export const commands: Record<string, Command> = {
       const c = Object.hasOwn(commands, name) ? commands[name] : undefined
       if (!c || c.hidden) return <Err>No manual entry for {name}</Err>
       return (
-        <pre class="plain">
-          <span class="accent">NAME</span>
-          {`\n    ${name} - ${c.desc}\n\n`}
-          <span class="accent">FILE</span>
-          {`\n    /bin/${name}`}
-        </pre>
+        <dl class="man">
+          <dt class="accent">NAME</dt>
+          <dd>
+            {name} - {c.desc}
+          </dd>
+          <dt class="accent">FILE</dt>
+          <dd>/bin/{name}</dd>
+        </dl>
       )
     },
   },

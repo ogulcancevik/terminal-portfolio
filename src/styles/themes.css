@@ -1,0 +1,155 @@
+/* Themes: add one by copying a block and adding its name to THEMES in src/types.ts. */
+:root,
+[data-theme='dracula'] {
+  --page: #191a21;
+  --bg: #282a36;
+  --bar: #21222c;
+  --fg: #f8f8f2;
+  --muted: #a4b0d8;
+  --accent: #50fa7b;
+  --link: #8be9fd;
+  --cmd: #d6b8ff;
+  --error: #ff6e6e;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='catppuccin'] {
+  --page: #11111b;
+  --bg: #1e1e2e;
+  --bar: #181825;
+  --fg: #cdd6f4;
+  --muted: #a6adc8;
+  --accent: #a6e3a1;
+  --link: #89b4fa;
+  --cmd: #cba6f7;
+  --error: #f38ba8;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='tokyo-night'] {
+  --page: #0f0f14;
+  --bg: #1a1b26;
+  --bar: #16161e;
+  --fg: #c0caf5;
+  --muted: #9aa5ce;
+  --accent: #9ece6a;
+  --link: #7dcfff;
+  --cmd: #bb9af7;
+  --error: #f7768e;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='nord'] {
+  --page: #1f232b;
+  --bg: #2e3440;
+  --bar: #272c36;
+  --fg: #d8dee9;
+  --muted: #9aa5b8;
+  --accent: #a3be8c;
+  --link: #88c0d0;
+  --cmd: #c8a2c1;
+  --error: #e08a93;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='gruvbox'] {
+  --page: #141617;
+  --bg: #282828;
+  --bar: #1d2021;
+  --fg: #ebdbb2;
+  --muted: #a89984;
+  --accent: #b8bb26;
+  --link: #83a598;
+  --cmd: #d3869b;
+  --error: #fb4934;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='one-dark'] {
+  --page: #181a1f;
+  --bg: #282c34;
+  --bar: #21252b;
+  --fg: #abb2bf;
+  --muted: #8b93a1;
+  --accent: #98c379;
+  --link: #61afef;
+  --cmd: #c678dd;
+  --error: #e06c75;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='monokai'] {
+  --page: #151612;
+  --bg: #272822;
+  --bar: #1e1f1c;
+  --fg: #f8f8f2;
+  --muted: #a59f85;
+  --accent: #a6e22e;
+  --link: #66d9ef;
+  --cmd: #b894ff;
+  --error: #ff4f8b;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='rose-pine'] {
+  --page: #110f1a;
+  --bg: #191724;
+  --bar: #1f1d2e;
+  --fg: #e0def4;
+  --muted: #908caa;
+  --accent: #ebbcba;
+  --link: #9ccfd8;
+  --cmd: #c4a7e7;
+  --error: #eb6f92;
+  --glow: none;
+  color-scheme: dark;
+}
+
+[data-theme='github-light'] {
+  --page: #eaeef2;
+  --bg: #ffffff;
+  --bar: #f6f8fa;
+  --fg: #1f2328;
+  --muted: #59636e;
+  --accent: #1a7f37;
+  --link: #0969da;
+  --cmd: #8250df;
+  --error: #cf222e;
+  --glow: none;
+  color-scheme: light;
+}
+
+[data-theme='solarized'] {
+  --page: #eee8d5;
+  --bg: #fdf6e3;
+  --bar: #eee8d5;
+  --fg: #073642;
+  --muted: #4f6168;
+  --accent: #5c6a00;
+  --link: #1a5f94;
+  --cmd: #5b4fb0;
+  --error: #b02a26;
+  --glow: none;
+  color-scheme: light;
+}
+
+[data-theme='retro'] {
+  --page: #000;
+  --bg: #0a0f0a;
+  --bar: #0f170f;
+  --fg: #33ff66;
+  --muted: #22c55e;
+  --accent: #a6ffbf;
+  --link: #a6ffbf;
+  --cmd: #e6ffe0;
+  --error: #ff6b6b;
+  --glow: 0 0 4px rgb(51 255 102 / 0.5);
+  color-scheme: dark;
+}

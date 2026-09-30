@@ -1,0 +1,172 @@
+/* What commands print: clickable names, listings, banner, neofetch, theme picker, experience, games. */
+
+/* Clickable command names and ls entries */
+.cmd {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--cmd);
+  font: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cmd.dir {
+  color: var(--link);
+  font-weight: bold;
+}
+.cmd.file {
+  color: var(--fg);
+}
+.cmd.bin {
+  color: var(--accent);
+}
+
+.ls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2ch;
+}
+
+.help-group + .help-group {
+  margin-top: 10px;
+}
+.help-group .grid {
+  grid-template-columns: 11ch 1fr; /* same column in every group */
+}
+
+pre.banner {
+  line-height: 1.15;
+  /* --cols (banner width, set inline) fit the screen; monospace glyphs are ~0.6em wide */
+  font-size: min(14px, calc((100vw - 64px) / var(--cols, 64) / 0.6));
+  margin-bottom: 12px;
+}
+
+.neofetch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 3ch;
+  align-items: center;
+}
+.swatches {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+.swatches i {
+  width: 20px;
+  height: 14px;
+}
+
+/* theme picker: each swatch sets data-theme, so it renders in its own colors */
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.themes button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  text-shadow: var(--glow);
+  cursor: pointer;
+}
+.themes button[aria-current='true'] {
+  outline: 2px solid var(--accent);
+}
+.themes i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.man dd {
+  padding-left: 4ch;
+}
+.man dd + dt {
+  margin-top: 8px;
+}
+
+/* experience */
+.plain-list {
+  list-style: none;
+  padding: 0;
+}
+.job + .job {
+  margin-top: 10px;
+}
+.job > p:first-child {
+  white-space: pre-wrap; /* keeps the padded date column */
+}
+.job-desc {
+  padding-left: 13ch;
+}
+
+/* games */
+pre.die {
+  line-height: 1.1; /* box-drawing lines join up */
+}
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 44px);
+  gap: 4px;
+  margin: 6px 0;
+}
+.ttt-board button {
+  height: 44px;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  background: none;
+  color: var(--accent);
+  font: bold 20px/1 inherit;
+  font-family: inherit;
+  cursor: pointer;
+}
+.ttt-board button.o {
+  color: var(--cmd);
+}
+.ttt-board button:disabled {
+  cursor: default;
+}
+
+.matrix {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #000;
+}
+.matrix-hint {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  z-index: 11;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.7);
+  color: #ccc;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .job-date {
+    display: block;
+  }
+  .job-desc {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .themes button:active {
+    transform: scale(0.96);
+    transition-duration: 0.1s;
+  }
+}

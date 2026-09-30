@@ -1,0 +1,66 @@
+/* Power states drawn over the whole page: the boot/shutdown console and the black "Power on" screen. */
+
+/* Anything but 'on': the whole monitor is black. */
+[data-power]:not([data-power='on']) body {
+  background: #000;
+}
+
+.power-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  color: #c9c9c9;
+  font-size: 14px;
+}
+.power-screen.off {
+  display: grid;
+  place-items: center;
+}
+.power-screen.console {
+  background: #000;
+}
+
+.power {
+  padding: 10px 20px;
+  border: 1px solid #555;
+  border-radius: 999px;
+  background: none;
+  color: #ccc;
+  font: inherit;
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .power:hover {
+    border-color: #aaa;
+    color: #fff;
+  }
+}
+
+.boot-log {
+  height: 100%;
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) 48px
+    max(24px, env(safe-area-inset-left));
+  overflow: hidden;
+  white-space: pre-wrap; /* long lines wrap on phones instead of running off the edge */
+}
+@media (max-width: 640px) {
+  .power-screen {
+    font-size: 12px;
+  }
+}
+.boot-skip {
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  color: #666;
+  font-size: 12px;
+}
+.power-screen .ok {
+  color: #3fb950;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .power-screen.off .power {
+    animation: fade-in 0.4s 0.7s both;
+  }
+}

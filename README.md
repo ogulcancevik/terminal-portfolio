@@ -70,7 +70,7 @@ Files in the virtual file system are generated in `src/fs.ts`. Add an entry to `
 
 ### Add a theme
 
-Copy a `[data-theme='…']` block in `src/style.css`, rename it, and add the name to `THEMES` in `src/types.ts`.
+Copy a `[data-theme='…']` block in `src/styles/themes.css`, rename it, and add the name to `THEMES` in `src/types.ts`.
 
 ## Deploy
 
